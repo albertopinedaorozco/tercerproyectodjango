@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+</head>
+<body>
+    <header>
+        <h1>Sistema escolar</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Estudiantes</a></li>
+                <li><a href="#">Docentes</a></li>
+                <li><a href="#">Asignaturas</a></li>
+                <li><a href="#">Programa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Listado de asignaturas</h2>
+        <ul>
+            {% for e in lista_asignaturas %}
+                <li> 
+                   Asignatura: <a href="#">{{ e.nombre }}</a>
+                     <h3>Horas: {{ e.horas }}</h3> 
+                     
+
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+    
+</body>
+</html>
