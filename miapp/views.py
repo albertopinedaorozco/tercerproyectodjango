@@ -25,3 +25,10 @@ def listar_asignaturas(request):
 def listar_programas(request):
     programas = Programa.objects.all()
     return render(request,'miapp/programas.html', {'lista_programas': programas})
+
+def estudiante_detalle(request,id):
+    estudiante = Estudiante.objects.get(id=id)
+    return render(request,'miapp/estudiante_detalle.html',{'estudiante': estudiante})
+
+
+

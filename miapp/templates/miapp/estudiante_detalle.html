@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block principal %}
+
+    <!-- detalle del estudiante -->
+    <h2>Detalle de estudiante</h2>
+    <p>Nombre:  {{ estudiante.nombre }} </p>
+    <p>Edad: {{ estudiante.edad }}</p>
+    <p>Direccion: {{ estudiante.direccion }}</p>
+    <p>Telefono: {{ estudiante.telefono }}</p>
+       
+{% endblock %}
