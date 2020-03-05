@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block principal %}
+
+    <p> ¿ Esta seguro que desea eliminar al estudiante {{ estudiante }} ? </p>
+    
+    <form action="{% url 'estudiante_borrar_confirma_n' estudiante.id %}" method="post">
+        {% csrf_token %}
+        <button>Si</button>
+    </form>
+    
+
+    <p> <a href="{% url 'estudiante_detalle_n' estudiante.id %}"> Cancelar </a>  </p>
+
+{% endblock %}

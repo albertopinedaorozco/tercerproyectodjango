@@ -8,5 +8,8 @@
     <p>Edad: {{ estudiante.edad }}</p>
     <p>Direccion: {{ estudiante.direccion }}</p>
     <p>Telefono: {{ estudiante.telefono }}</p>
+
+    <a href="{% url 'estudiante_borrar_n' estudiante.id %}">Eliminar estudiante</a>
+    <a href="{% url 'estudiante_actualizar_n' estudiante.id %}">Modificar datos</a>
        
 {% endblock %}

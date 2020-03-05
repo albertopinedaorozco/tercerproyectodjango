@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from .models import *
+from .forms import EstudianteForm
 
 def inicio(request):
     return HttpResponse("Hola mundo")
@@ -29,6 +30,38 @@ def listar_programas(request):
 def estudiante_detalle(request,id):
     estudiante = Estudiante.objects.get(id=id)
     return render(request,'miapp/estudiante_detalle.html',{'estudiante': estudiante})
+
+def estudiante_nuevo(request):
+
+    if request.method == 'GET':
+        formu = EstudianteForm()
+        return render(request, 'miapp/estudiante_nuevo.html', {'form': formu})
+    else:
+        formu = EstudianteForm(request.POST)
+        if formu.is_valid():
+            formu.save()
+            return redirect('index_n')
+
+def estudiante_borrar(request, id):
+    estudiante = Estudiante.objects.get(id=id)
+    return render(request,'miapp/estudiante_eliminar.html', {'estudiante': estudiante})
+
+def estudiante_borrar_confirmar(request, id):
+    estudiante = Estudiante.objects.get(id=id)
+    estudiante.delete()
+    return redirect('index_n')
+
+def estudiante_actualizar(request, id):
+    estudiante = Estudiante.objects.get(id=id)
+    if request.method == 'GET':
+        
+        formu = EstudianteForm(instance=estudiante)
+        return render(request, 'miapp/estudiante_actualizar.html', {'form': formu})
+    else:
+        pass
+
+    
+
 
 
 
