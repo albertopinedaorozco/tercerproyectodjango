@@ -1,23 +1,40 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block estilos %}
+
+    {% endblock estilos %}
 </head>
 <body>
     <header>
+        <img src="{% static 'images/logo.jpg' %}" alt="">
         <h1>Sistema escolar</h1>
         <nav>
             <ul>
                 <li><a href="{% url 'index_n' %}">Estudiantes</a>
+                    {% if user.is_authenticated %}
                     <ul>
                         <li><a href="{% url 'estudiante_nuevo_n' %}"> Nuevo estudiante</a></li>
                     </ul>
-            </li>
+                    {% endif %}
+                </li>
                 <li><a href="{% url 'docentes_n' %}">Docentes</a></li>
                 <li><a href="{% url 'asignaturas_n' %}">Asignaturas</a></li>
                 <li><a href="{% url 'programas_n' %}">Programa</a></li>
+                {% if user.is_authenticated %}
+                    <li>{{ user.username }}</li>
+                    <li><a href="{% url 'logout' %}">Cerrar sesion</a> </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Inicio de sesion</a> </li>
+                {% endif %}
             </ul>
         </nav>
     </header>
@@ -29,5 +46,8 @@
        
     </main>
     
+    {% block js %}
+
+    {% endblock js %}
 </body>
 </html>

@@ -11,5 +11,7 @@ urlpatterns = [
     path('estudiante/borrar/<int:id>/confirmar',  estudiante_borrar_confirmar, name='estudiante_borrar_confirma_n'),
     path('estudiante/nuevo',  estudiante_nuevo, name='estudiante_nuevo_n'),
     path('estudiante/actualizar/<int:id>',  estudiante_actualizar, name='estudiante_actualizar_n'),
+    path('iniciosesion/', LoginView.as_view(template_name='accounts/login.html') , name='login'),
+    path('cerrarsesion/', LogoutView.as_view(template_name='accounts/logout.html') , name='logout'),
        
 ]

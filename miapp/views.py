@@ -4,11 +4,16 @@ from django.http import HttpResponse
 from .models import *
 from .forms import EstudianteForm
 
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.decorators import login_required
+
+
 def inicio(request):
     return HttpResponse("Hola mundo")
 
 def contacto(request):
     return HttpResponse("<h1>Contacto</h1>")
+
 
 def listar_estudiantes(request):
     estudiantes = Estudiante.objects.all()
@@ -18,7 +23,7 @@ def listar_estudiantes(request):
 def listar_docentes(request):
     docentes = Docente.objects.all()
     return render(request,'miapp/docentes.html', {'lista_docentes': docentes})
-
+@login_required
 def listar_asignaturas(request):
     asignaturas = Asignatura.objects.all()
     return render(request,'miapp/asignaturas.html', {'lista_asignaturas': asignaturas})
@@ -58,7 +63,10 @@ def estudiante_actualizar(request, id):
         formu = EstudianteForm(instance=estudiante)
         return render(request, 'miapp/estudiante_actualizar.html', {'form': formu})
     else:
-        pass
+        formu = EstudianteForm(request.POST, instance=estudiante)
+        formu.save()
+        return redirect('index_n')
+
 
     
 
